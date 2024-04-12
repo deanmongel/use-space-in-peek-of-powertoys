@@ -14,8 +14,8 @@ Installation:
 本项目通过AutoHotkey，实现通过Space键调用PowerToys中Peek功能。
 
 项目特色：
-1.使用Space键启动Peek界面，再次按Space键关闭Peek界面
-2.不影响文件搜索和文件名编辑
+1. 使用Space键启动Peek界面，再次按Space键关闭Peek界面
+2. 不影响文件搜索和文件名编辑
 
 使用方法：
 1. 下载安装 [Autohotkey](https://www.autohotkey.com/)
