@@ -4,29 +4,31 @@ GetFocusedControlClassNN( )
 GuiWindowHwnd := WinExist("A")		;stores the current Active Window Hwnd id number in "GuiWindowHwnd" variable
 				;"A" for Active Window
 
-ControlGetFocus, FocusedControl, ahk_id %GuiWindowHwnd%	;stores the  classname "ClassNN" of the current focused control from the window above in "FocusedControl" variable
+FocusedControl := ControlGetClassNN(ControlGetFocus("ahk_id " GuiWindowHwnd))	;stores the  classname "ClassNN" of the current focused control from the window above in "FocusedControl" variable
 						;"ahk_id" searches windows by Hwnd Id number
 
-return, FocusedControl
+return FocusedControl
 }
 
 ;only active in explorer
-#IfWinActive ahk_exe explorer.exe
+#HotIf WinActive("ahk_exe explorer.exe", )
 space::
-classnn:=GetFocusedControlClassNN()
-;not active in searching or renaming files
-if (classnn != "Microsoft.UI.Content.DesktopChildSiteBridge1" and classnn != "Edit1" )
 {
-    Send !{space}
+    classnn:=GetFocusedControlClassNN()
+    ;not active in searching or renaming files
+    if (classnn != "Microsoft.UI.Content.DesktopChildSiteBridge1" and classnn != "Edit1" )
+    {
+        Send("!{space}")
+    }
+    else
+    {
+        Send("{space}")
+    }
+    return
 }
-else
-{
-    Send {space}
-}
-return
-#IfWinActive
+#HotIf
 
 ;press space again to closee peek ui
-#IfWinActive ahk_exe PowerToys.Peek.UI.exe
+#HotIf WinActive("ahk_exe PowerToys.Peek.UI.exe", )
 space::^w
-#IfWinActive
+#HotIf
