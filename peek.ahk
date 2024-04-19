@@ -16,7 +16,7 @@ space::
 {
     classnn:=GetFocusedControlClassNN()
     ;not active in searching or renaming files
-    if (classnn != "Microsoft.UI.Content.DesktopChildSiteBridge1" and classnn != "Edit1" )
+    if (!RegExMatch(classnn,"Microsoft.UI.Content.DesktopChildSiteBridge.*") and !RegExMatch(classnn,"Edit.*") )
     {
         Send("!{space}")
     }
